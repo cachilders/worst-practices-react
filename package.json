@@ -1,0 +1,54 @@
+{
+  "name": "worst-practices-react",
+  "version": "0.0.1",
+  "description": "✏️ A fun tool for mutating text",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cachilders/worst-practices-react.git"
+  },
+  "keywords": [
+    "text"
+  ],
+  "author": "Casey A. Childers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cachilders/worst-practices-react/issues"
+  },
+  "homepage": "https://github.com/cachilders/worst-practices-react#readme",
+  "dependencies": {
+    "backpat": "^0.6.2",
+    "express": "^4.14.0",
+    "fetch": "^1.1.0",
+    "node-sass": "^4.2.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.0",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "semantic-ui-react": "^0.63.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.26.0",
+    "sass-loader": "^4.1.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
