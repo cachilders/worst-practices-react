@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest",
-    "build": "rm -rf dist && webpack --config webpack/webpack.config.js --progress --hide-modules -p",
-    "dev": "rm -rf dist && webpack-dev-server --config ./webpack/webpack.config.js"
+    "build": "rm -rf dist && webpack --config webpack/webpack.build.js --progress --hide-modules",
+    "dev": "rm -rf dist && webpack-dev-server --config ./webpack/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -60,6 +60,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.26.0",
+    "loose-envify": "^1.3.0",
     "npm-install-webpack-plugin": "^4.0.4",
     "postcss-loader": "^0.9.1",
     "react-hot-loader": "^3.0.0-beta.6",
