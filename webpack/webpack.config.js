@@ -8,12 +8,12 @@ const home = resolve(__dirname, '../');
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8888',
+    'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
     `${home}/src/app/index.jsx`,
   ],
   output: {
-    filename: '[name].js',
+    filename: '[hash].[name].js',
     path: `${home}/dist`,
     publicPath: '/',
   },
@@ -32,6 +32,7 @@ module.exports = {
       {
         test: /\.js[x]?|\.es6$/,
         use: 'babel-loader',
+        query: { compact: false },
       },
       {
         test: /\.css$/,
@@ -42,10 +43,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'sass-loader' },
-        ],
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader!sass-loader',
+        }),
       },
       {
         test: /\.css/,
@@ -59,7 +60,7 @@ module.exports = {
     new Webpack.optimize.CommonsChunkPlugin({
       async: true,
       children: true,
-      filename: 'vendor',
+      names: ['vendor', 'manifest'],
     }),
     new ExtractTextPlugin({
       filename: 'styles.css',
