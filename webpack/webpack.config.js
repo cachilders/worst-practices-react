@@ -6,12 +6,18 @@ const { resolve } = require('path');
 const home = resolve(__dirname, '../');
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    `${home}/src/app/index.jsx`,
-  ],
+  entry: {
+    app: `${home}/src/app/index.jsx`,
+    vendor: [
+      'axios',
+      'immutable',
+      'react',
+      'react-dom',
+      'redux',
+      'redux-thunk',
+      'semantic-ui-react',
+    ],
+  },
   output: {
     filename: '[hash].[name].js',
     path: `${home}/dist`,
@@ -30,6 +36,7 @@ module.exports = {
   module: {
     rules: [
       {
+        exclude: /node_modules/,
         test: /\.js[x]?|\.es6$/,
         use: 'babel-loader',
         query: { compact: false },
@@ -49,13 +56,24 @@ module.exports = {
         }),
       },
       {
-        test: /\.css/,
-        use: 'babel-loader',
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 1000, // 1KO
+          name: 'img/[name].[ext]?[hash]',
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1000, // 1 KO
+          name: 'fonts/[name].[hash:7].[ext]',
+        },
       },
     ],
   },
   plugins: [
-    new Webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({ template: `${home}/src/index.html` }),
     new Webpack.optimize.CommonsChunkPlugin({
       async: true,
@@ -70,5 +88,8 @@ module.exports = {
     }),
     new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NamedModulesPlugin(),
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    }),
   ],
 };
