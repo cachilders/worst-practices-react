@@ -6,7 +6,7 @@ function Main({ someValue }) {
     <Container fluid>
       <Grid padded>
         <Grid.Column mobile={16} tablet={16} computer={8}>
-          <Container>Just some text in a column</Container>
+          <Container>I'm just some text in a column. Yup, that's me.</Container>
         </Grid.Column>
         <Grid.Column mobile={16} tablet={16} computer={8}>
           <Container>Also a column here printing a prop: {someValue}</Container>

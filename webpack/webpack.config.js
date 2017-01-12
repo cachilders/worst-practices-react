@@ -8,19 +8,12 @@ const home = resolve(__dirname, '../');
 module.exports = (options) => {
   const webpackConfig = {
     entry: {
-      app: `${home}/src/app/index.jsx`,
-      vendor: [
-        'axios',
-        'immutable',
-        'react',
-        'react-dom',
-        'redux',
-        'redux-thunk',
-        'semantic-ui-react',
+      app: [
+        `${home}/src/app/index.jsx`,
       ],
     },
     output: {
-      filename: '[hash].[name].js',
+      filename: `${options.filename}.js`,
       path: `${home}/dist`,
       publicPath: '/',
     },
@@ -99,6 +92,17 @@ module.exports = (options) => {
       contentBase: `${home}/dist`,
       publicPath: '/',
     };
+  } else {
+    webpackConfig.plugins.push();
+    webpackConfig.entry.vendor = [
+      'axios',
+      'immutable',
+      'react',
+      'react-dom',
+      'redux',
+      'redux-thunk',
+      'semantic-ui-react',
+    ];
   }
 
   return webpackConfig;

@@ -15,7 +15,7 @@ import './components/import.scss';
 const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
-ReactDOM.render(
+const app = (
   <Provider store={store}>
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
       <Route path="/" component={App}>
@@ -23,4 +23,10 @@ ReactDOM.render(
       </Route>
     </Router>
   </Provider>
-  , document.getElementById('app'));
+);
+
+if (typeof ISOMORPHIC_WEBPACK === 'undefined') {
+  ReactDOM.render(app, document.getElementById('app'));
+}
+
+export default app;
