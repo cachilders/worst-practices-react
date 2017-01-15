@@ -25,8 +25,6 @@ const app = (
   </Provider>
 );
 
-if (typeof ISOMORPHIC_WEBPACK === 'undefined') {
-  ReactDOM.render(app, document.getElementById('app'));
-}
+ReactDOM.render(app, document.getElementById('app'));
 
 export default app;
