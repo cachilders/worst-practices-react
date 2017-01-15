@@ -2,7 +2,6 @@
   "presets": ["react", "stage-2", "es2015"],
   "plugins": [
     "transform-es2015-modules-commonjs",
-    "transform-flow-strip-types",
-    "react-hot-loader/babel"
+    "transform-flow-strip-types"
   ]
 }

@@ -1,7 +1,9 @@
 const Webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglify-js-plugin');
 const { resolve } = require('path');
+
 
 const home = resolve(__dirname, '../');
 
@@ -25,10 +27,10 @@ module.exports = (options) => {
     module: {
       rules: [
         {
-          exclude: /node_modules/,
           test: /\.js[x]?|\.es6$/,
-          use: 'babel-loader',
-          query: { compact: false },
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          options: {},
         },
         {
           test: /\.css$/,
@@ -68,6 +70,7 @@ module.exports = (options) => {
         async: true,
         children: true,
         names: ['vendor', 'manifest'],
+        minChunks: Infinity,
       }),
       new ExtractTextPlugin({
         filename: 'styles.css',
@@ -93,7 +96,13 @@ module.exports = (options) => {
       publicPath: '/',
     };
   } else {
-    webpackConfig.plugins.push();
+    webpackConfig.plugins.push(
+      new UglifyJsPlugin({
+        compress: {
+          warnings: true,
+        },
+      })
+    );
     webpackConfig.entry.vendor = [
       'axios',
       'immutable',
